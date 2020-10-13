@@ -3,11 +3,13 @@ package com.vegazsdev.bobobot.commands;
 import com.vegazsdev.bobobot.TelegramBot;
 import com.vegazsdev.bobobot.core.Command;
 import com.vegazsdev.bobobot.db.PrefObj;
+import com.vegazsdev.bobobot.utils.Config;
 import com.vegazsdev.bobobot.utils.FileTools;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Objects;
 import java.util.Properties;
 
 public class sfsetup extends Command {
@@ -30,15 +32,17 @@ public class sfsetup extends Command {
     @Override
     public void botReply(Update update, TelegramBot bot, PrefObj prefs) {
         String msg = update.getMessage().getText();
-        if (FileTools.checkIfFolderExists("configs/sf-creds.config")) {
-            mkSfConf();
-            bot.sendMessage("Check your config folder", update);
-        } else if (msg.contains(" -d")) {
-            FileTools.deleteFile("configs/sf-creds.config");
-            mkSfConf();
-            bot.sendMessage("Sourceforge settings have been deleted, check the folder again", update);
-        } else {
-            bot.sendMessage("Unable to create a new configuration file, as it already exists. If intentional, use \"-d\" in the arguments", update);
+        if (update.getMessage().getFrom().getId() == Float.parseFloat(Objects.requireNonNull(Config.getDefConfig("bot-master")))) {
+            if (FileTools.checkIfFolderExists("configs/sf-creds.config")) {
+                mkSfConf();
+                bot.sendMessage("Check your config folder", update);
+            } else if (msg.contains(" -d")) {
+                FileTools.deleteFile("configs/sf-creds.config");
+                mkSfConf();
+                bot.sendMessage("Sourceforge settings have been deleted, check the folder again", update);
+            } else {
+                bot.sendMessage("Unable to create a new configuration file, as it already exists. If intentional, use \"-d\" in the arguments", update);
+            }
         }
     }
 
