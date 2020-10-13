@@ -23,7 +23,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(TelegramBot.class);
 
-    private Bot bot;
+    private final Bot bot;
     private ArrayList<Class> commandClasses;
 
     TelegramBot(Bot bot, ArrayList<Class> commandClasses) {

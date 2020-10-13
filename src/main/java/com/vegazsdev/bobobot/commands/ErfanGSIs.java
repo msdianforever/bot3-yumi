@@ -30,16 +30,29 @@ import java.util.stream.Stream;
 public class ErfanGSIs extends Command {
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(ErfanGSIs.class);
-
+    private static final ArrayList<GSICmdObj> queue = new ArrayList<>();
     private static boolean isPorting = false;
-    private static ArrayList<GSICmdObj> queue = new ArrayList<>();
     private final String toolPath = "ErfanGSIs/";
-    private File[] supportedGSIs9 = new File(toolPath + "roms/9").listFiles(File::isDirectory);
-    private File[] supportedGSIs10 = new File(toolPath + "roms/10").listFiles(File::isDirectory);
+    private final File[] supportedGSIs9 = new File(toolPath + "roms/9").listFiles(File::isDirectory);
+    private final File[] supportedGSIs10 = new File(toolPath + "roms/10").listFiles(File::isDirectory);
     private String infoGSI = "";
 
     public ErfanGSIs() {
         super("jurl2gsi", "Can port gsi");
+    }
+
+    private static String[] listFilesForFolder(final File folder) {
+        StringBuilder paths = new StringBuilder();
+        for (final File fileEntry : Objects.requireNonNull(folder.listFiles())) {
+            if (fileEntry.isDirectory()) {
+                listFilesForFolder(fileEntry);
+            } else {
+                if (fileEntry.getName().contains(".img")) {
+                    paths.append(fileEntry.getAbsolutePath()).append("\n");
+                }
+            }
+        }
+        return paths.toString().split("\n");
     }
 
     @Override
@@ -132,7 +145,6 @@ public class ErfanGSIs extends Command {
 
         }
     }
-
 
     private String try2AvoidCodeInjection(String parameters) {
         try {
@@ -255,7 +267,7 @@ public class ErfanGSIs extends Command {
                 ArrayList<String> arr = new ArrayList<>();
 
                 AtomicReference<String> aonly = new AtomicReference<>("");
-                AtomicReference<String> ab= new AtomicReference<>("");
+                AtomicReference<String> ab = new AtomicReference<>("");
 
                 try (Stream<Path> paths = Files.walk(Paths.get("ErfanGSIs/output/"))) {
                     paths
@@ -263,9 +275,9 @@ public class ErfanGSIs extends Command {
                             .forEach(a -> {
                                 if (a.toString().endsWith(".img.gz")) {
                                     arr.add(a.toString());
-                                    if(a.toString().contains("Aonly")){
+                                    if (a.toString().contains("Aonly")) {
                                         aonly.set(FilenameUtils.getBaseName(a.toString()) + "." + FilenameUtils.getExtension(a.toString()));
-                                    }else{
+                                    } else {
                                         ab.set(FilenameUtils.getBaseName(a.toString()) + "." + FilenameUtils.getExtension(a.toString()));
                                     }
                                 }
@@ -283,7 +295,7 @@ public class ErfanGSIs extends Command {
                 bot.editMessage(fullLogs.toString(), update, id);
 
                 String re = new sfUpload().uploadGsi(arr, gsiCmdObj.getGsi());
-                re=re+"/";
+                re = re + "/";
 
 
 //                GDriveGSI links = new GSIUpload().enviarGSI(gsiCmdObj.getGsi(), arr);
@@ -317,11 +329,11 @@ public class ErfanGSIs extends Command {
                                     + "\n\nFile not found? wait some minutes\nSlow downloads? try a mirror :)"
                                     + "\n\n*Thanks to:* [Contributors List](https://github.com/erfanoabdi/ErfanGSIs/graphs/contributors)"
                                     + "\n\n[Ported using ErfanGSIs Tool](https://github.com/erfanoabdi/ErfanGSIs)", Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             LOGGER.error("bot-announcement-id looks wrong or not set");
                         }
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     LOGGER.warn("bot-send-announcement is not set");
                 }
 
@@ -334,20 +346,6 @@ public class ErfanGSIs extends Command {
         } catch (Exception ex) {
             LOGGER.error(fullLogs);
         }
-    }
-
-    private static String[] listFilesForFolder(final File folder) {
-        StringBuilder paths = new StringBuilder();
-        for (final File fileEntry : Objects.requireNonNull(folder.listFiles())) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry);
-            } else {
-                if (fileEntry.getName().contains(".img")) {
-                    paths.append(fileEntry.getAbsolutePath()).append("\n");
-                }
-            }
-        }
-        return paths.toString().split("\n");
     }
 
     private boolean addPortPerm(String id) {
@@ -506,24 +504,24 @@ class sfUpload {
     String pass;
     String proj;
 
-    sfUpload(){
+    sfUpload() {
         this.user = sfsetup.getSfConf("bot-sf-user");
-        this.host =  sfsetup.getSfConf("bot-sf-host");
-        this.pass =  sfsetup.getSfConf("bot-sf-pass");
-        this.proj =  sfsetup.getSfConf("bot-sf-proj");
+        this.host = sfsetup.getSfConf("bot-sf-host");
+        this.pass = sfsetup.getSfConf("bot-sf-pass");
+        this.proj = sfsetup.getSfConf("bot-sf-proj");
     }
 
-    public String uploadGsi(ArrayList<String> aar, String name){
+    public String uploadGsi(ArrayList<String> aar, String name) {
 
-        if(name.contains(":")){
+        if (name.contains(":")) {
             // should be better to regex any special char
-            name=name.replace(":", " - ");
+            name = name.replace(":", " - ");
         }
 
-        name=name + " - " + RandomStringUtils.randomAlphanumeric(10).toUpperCase();
-        String path = "/home/frs/project/" + proj + "/"+name;
+        name = name + " - " + RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+        String path = "/home/frs/project/" + proj + "/" + name;
 
-        try{
+        try {
             JSch jsch = new JSch();
             Session session = jsch.getSession(user, host);
             session.setConfig("StrictHostKeyChecking", "no");
@@ -533,12 +531,12 @@ class sfUpload {
             sftpChannel.connect();
             sftpChannel.mkdir(path);
             for (int i = 0; i < aar.size(); i++) {
-                if(!aar.get(i).endsWith(".img")){
+                if (!aar.get(i).endsWith(".img")) {
                     sftpChannel.put(aar.get(i), path);
                 }// dont send .img files, they should be compressed//
             }
             return name;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;

@@ -2,7 +2,7 @@ package com.vegazsdev.bobobot.core;
 
 public class ForwardMethod {
 
-    private Class aClass;
+    private final Class aClass;
     private String alias;
 
     public ForwardMethod(Class aClass, String alias) {

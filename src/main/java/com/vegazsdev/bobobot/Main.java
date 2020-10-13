@@ -46,7 +46,7 @@ public class Main {
                 if (info.getName().startsWith("com.vegazsdev.bobobot.commands")) {
                     final Class<?> clazz = info.load();
                     try {
-                        Object instance = ((Class<?>) clazz).getDeclaredConstructor().newInstance();
+                        Object instance = clazz.getDeclaredConstructor().newInstance();
                         Method method = ((Class<?>) clazz).getSuperclass().getDeclaredMethod("getAlias");
                         method.invoke(instance);
                         commandClasses.add(clazz);

@@ -32,11 +32,8 @@ public class GDrive {
     // and from: https://developers.google.com/drive/api/v3/quickstart/java
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(GDrive.class);
-
+    private static final java.io.File CREDENTIALS_FOLDER = new java.io.File("credentials");
     private static String APPLICATION_NAME = "Google Drive API Java Quickstart";
-
-    private static java.io.File CREDENTIALS_FOLDER = new java.io.File("credentials");
-
     private static JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     // Directory to store user credentials for this application.

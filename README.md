@@ -1,4 +1,4 @@
-# Bo³+t Bot
+# Bo³+t Bot - Kurata Yui
 
 Just a other Telegram Bot made using [TelegramBots](https://github.com/rubenlagus/TelegramBots) Java Library
 
@@ -14,10 +14,11 @@ Default Commands:
 Other Commands:
 
  - Hello: Says a Hello! (!hello)
+ - sfsetup: Make a sourceforge auth
  - Chat2Shell: Run shell commands on host computer via chat (!shell)
  - SetupGDrive: Setup your Google Drive Account to send files (!setupgdrive)
  - Download2GDrive: Download any directlink and send to your Google Drive (!d2gdrive)
- - ErfanGSIs: Can port GSIs using [ErfanGSIs Tool](https://github.com/erfanoabdi/ErfanGSIs) (!jurl2gsi)
+ - ErfanGSIs: Can port GSIs using [ErfanGSIs Tool](https://github.com/Treble-Experience/ErfanGSIs-VelanGSIs) (!jurl2gsi)
  
 *More commands will be added in future, any suggestion or contributions are welcome :)*
 
@@ -71,6 +72,8 @@ This bot tries to be most modular as possible, so, we use Reflection on Main cla
 This is just mine "personal" bot for telegram haha
 
 ### Credits and Libraries
+
+[Bot3 (by VegaBobo)](https://github.com/VegaBobo/Bot3)
 
 [TelegramBots (by rubenlagus)](https://github.com/rubenlagus/TelegramBots)
 

@@ -19,7 +19,9 @@
     <bot_started>Bo³+t is Ready, waiting for Telegram messages!</bot_started>
     <bot_init>Initializing Bo³+t...</bot_init>
     <cc_init_cmd>[Command Classes] Initialized: %1</cc_init_cmd>
-    <config_file_info>CONFIG FILE CREATED! PLEASE EDIT THIS FILE WITH YOUR BOT INFORMATION AND RUN BOT AGAIN! EXITING...</config_file_info>
+    <config_file_info>CONFIG FILE CREATED! PLEASE EDIT THIS FILE WITH YOUR BOT INFORMATION AND RUN BOT AGAIN!
+        EXITING...
+    </config_file_info>
     <config_file_not_found>Config file not found, creating a new one...</config_file_not_found>
     <exception_thrown_retnull>Exception thrown, returning null</exception_thrown_retnull>
     <command_failure>Command Failure: %1 - %2</command_failure>

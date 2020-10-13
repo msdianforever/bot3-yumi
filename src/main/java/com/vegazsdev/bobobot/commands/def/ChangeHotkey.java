@@ -9,11 +9,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class ChangeHotkey extends Command {
 
+    private final String supportedHotkeys = XMLs.getFromStringsXML("core-strings.xml", "possible_hotkeys");
+
     public ChangeHotkey() {
         super("chkey", "Change current hotkey on this chat");
     }
-
-    private String supportedHotkeys = XMLs.getFromStringsXML("core-strings.xml", "possible_hotkeys");
 
     @Override
     public void botReply(Update update, TelegramBot bot, PrefObj prefs) {

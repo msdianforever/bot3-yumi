@@ -16,6 +16,7 @@ public class About extends Command {
         bot.sendMessage(
                 "*bo³+t Bot* for Telegram by @VegaZS\n" +
                         "Written in Java using TelegramBots and many other libraries :)\n\n" +
+                        "[Kurata Yui](https://github.com/Kurata-Yui/Bot3)\n" +
                         "[TelegramBots (by rubenlagus)](https://github.com/rubenlagus/TelegramBots)\n" +
                         "[Apache Commons](https://commons.apache.org/)\n" +
                         "[Apache Log4j 2 (API/Core)](https://logging.apache.org/log4j/)\n" +

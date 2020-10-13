@@ -12,11 +12,6 @@ public class FileTools {
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(FileTools.class);
 
-    public boolean checkFileExistsCurPath(String file) {
-        File f = new File(file);
-        return f.exists() && !f.isDirectory();
-    }
-
     public static boolean checkIfFolderExists(String folder) {
         return !new File(folder).exists();
     }
@@ -27,6 +22,22 @@ public class FileTools {
             return dir.mkdir();
         } else {
             return false;
+        }
+    }
+
+    public static boolean checkFileExistsCurPath(String file) {
+        File f = new File(file);
+        return f.exists() && !f.isDirectory();
+    }
+
+    public static void deleteFile(String fileName) {
+        File file = new File(fileName);
+
+        boolean result = file.delete();
+        if (result) {
+            System.out.println(file + " deleted!");
+        } else {
+            System.out.println("Unable to delete: " + file);
         }
     }
 
@@ -59,7 +70,6 @@ public class FileTools {
         }
     }
 
-
     public String readFile(String fileName) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         StringBuilder sb = new StringBuilder();
@@ -71,7 +81,6 @@ public class FileTools {
         }
         return sb.toString();
     }
-
 
     public List<String> getResourceFiles(String path) throws IOException {
         List<String> filenames = new ArrayList<>();

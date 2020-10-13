@@ -15,23 +15,6 @@ public class Config {
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Config.class);
 
-    public boolean createDefConfig() {
-        try {
-            FileTools.createFolder("configs");
-            Properties saveProps = new Properties();
-            saveProps.setProperty("bot-token", "put your telegram bot token here");
-            saveProps.setProperty("bot-username", "put your bot user name, without @");
-            saveProps.setProperty("bot-master", "put your telegram user id here");
-            saveProps.store(new FileOutputStream("configs/" +
-                    Objects.requireNonNull(XMLs.getFromStringsXML(Main.DEF_CORE_STRINGS_XML, "config_file"))
-            ), "Bo³+t config file");
-            return true;
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return false;
-        }
-    }
-
     public static String getDefConfig(String prop) {
         try {
             Properties getProps = new Properties();
@@ -51,6 +34,23 @@ public class Config {
                 saveProps.setProperty(config.getConfName(), config.getConfDefValue());
             }
             saveProps.store(new FileOutputStream("configs/" + configFile), comment);
+            return true;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return false;
+        }
+    }
+
+    public boolean createDefConfig() {
+        try {
+            FileTools.createFolder("configs");
+            Properties saveProps = new Properties();
+            saveProps.setProperty("bot-token", "put your telegram bot token here");
+            saveProps.setProperty("bot-username", "put your bot user name, without @");
+            saveProps.setProperty("bot-master", "put your telegram user id here");
+            saveProps.store(new FileOutputStream("configs/" +
+                    Objects.requireNonNull(XMLs.getFromStringsXML(Main.DEF_CORE_STRINGS_XML, "config_file"))
+            ), "Bo³+t config file");
             return true;
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
