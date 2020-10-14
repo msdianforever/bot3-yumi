@@ -297,23 +297,23 @@ public class ErfanGSIs extends Command {
                 String re = new sfUpload().uploadGsi(arr, gsiCmdObj.getGsi());
                 re = re + "/";
 
-
-//                GDriveGSI links = new GSIUpload().enviarGSI(gsiCmdObj.getGsi(), arr);
-//
-//                if (gsiCmdObj.getGsi().contains(":")) {
-//                    gsiCmdObj.setGsi(gsiCmdObj.getGsi().split(":")[1]);
-//                }
+                if (gsiCmdObj.getGsi().contains(":")) {
+                    gsiCmdObj.setGsi(gsiCmdObj.getGsi().split(":")[1]);
+                }
 
                 StringBuilder generateLinks = new StringBuilder();
 
+                generateLinks.append("\n*Download* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
+
                 if (!aonly.toString().trim().equals("")) {
-                    generateLinks.append("\n*Download A-Only:* [SourceForge](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
+                    generateLinks.append("[Aonly](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
+                }
+                if (!aonly.toString().trim().equals("") && !ab.toString().trim().equals("")) {
+                    generateLinks.append(" | ");
                 }
                 if (!ab.toString().trim().equals("")) {
-                    generateLinks.append("\n*Download AB:* [SourceForge](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
+                    generateLinks.append("[AB](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
                 }
-
-                generateLinks.append("\n*Folder:* [SourceForge](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")");
 
                 String descGSI = "" + new FileTools().readFile(infoGSI).trim();
 
@@ -322,13 +322,12 @@ public class ErfanGSIs extends Command {
                 try {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
-                            bot.sendMessage2ID("*GSI: " + gsiCmdObj.getGsi() + "*\n\n"
-                                    + "*Firmware Base: *" + "[URL](" + gsiCmdObj.getUrl() + ")"
-                                    + "\n\n*Information:*\n`" + descGSI
+                            bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " - GSI*\n\n"
+                                    + "\n\n*Information:*\n\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
-                                    + "\n\nFile not found? wait some minutes\nSlow downloads? try a mirror :)"
-                                    + "\n\n*Thanks to:* [Contributors List](https://github.com/erfanoabdi/ErfanGSIs/graphs/contributors)"
-                                    + "\n\n[Ported using ErfanGSIs Tool](https://github.com/erfanoabdi/ErfanGSIs)", Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
+                                    + "\n\n*Thanks to:*\n [Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
+                                    + " | " + "[VegaBobo](https://github.com/VegaBobo/Bot3)"
+                                    + "\n\n[Bo³+t (Kurata Yui) Source](https://github.com/Kurata-Yui/Bot3)", Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
                         } catch (Exception e) {
                             LOGGER.error("bot-announcement-id looks wrong or not set");
                         }
