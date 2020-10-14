@@ -32,7 +32,7 @@ public class sfsetup extends Command {
     @Override
     public void botReply(Update update, TelegramBot bot, PrefObj prefs) {
         String msg = update.getMessage().getText();
-        if (update.getMessage().getFrom().getId() == Float.parseFloat(Objects.requireNonNull(Config.getDefConfig("bot-master")))) {
+        if (update.getMessage().getFrom().getId() == Float.parseFloat(Objects.requireNonNull(Config.getDefConfig("bot-master"))) || update.getMessage().getFrom().getId() == Float.parseFloat(Objects.requireNonNull(Config.getDefConfig("bot-submaster")))) {
             if (FileTools.checkIfFolderExists("configs/sf-creds.config")) {
                 mkSfConf();
                 bot.sendMessage("Check your config folder", update);

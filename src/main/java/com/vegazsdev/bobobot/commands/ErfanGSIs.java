@@ -61,7 +61,7 @@ public class ErfanGSIs extends Command {
         String msg = update.getMessage().getText();
         String idAsString = update.getMessage().getFrom().getId().toString();
 
-        if (msg.contains(" allowuser") && Objects.equals(Config.getDefConfig("bot-master"), idAsString)) {
+        if (msg.contains(" allowuser") && Objects.equals(Config.getDefConfig("bot-master"), idAsString) || msg.contains(" allowuser") && Objects.equals(Config.getDefConfig("bot-submaster"), idAsString)) {
             if (update.getMessage().getReplyToMessage() != null) {
                 String userid = update.getMessage().getReplyToMessage().getFrom().getId().toString();
                 if (addPortPerm(userid)) {
@@ -206,7 +206,7 @@ public class ErfanGSIs extends Command {
     }
 
     private boolean userHasPortPermissions(String idAsString) {
-        if (Objects.equals(Config.getDefConfig("bot-master"), idAsString)) {
+        if (Objects.equals(Config.getDefConfig("bot-master"), idAsString) || Objects.equals(Config.getDefConfig("bot-submaster"), idAsString)) {
             return true;
         }
         String portConfigFile = "configs/allowed2port.json";

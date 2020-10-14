@@ -48,6 +48,7 @@ public class Config {
             saveProps.setProperty("bot-token", "put your telegram bot token here");
             saveProps.setProperty("bot-username", "put your bot user name, without @");
             saveProps.setProperty("bot-master", "put your telegram user id here");
+            saveProps.setProperty("bot-submaster", "put your 2nd telegram user id here");
             saveProps.store(new FileOutputStream("configs/" +
                     Objects.requireNonNull(XMLs.getFromStringsXML(Main.DEF_CORE_STRINGS_XML, "config_file"))
             ), "Bo³+t config file");
