@@ -323,9 +323,9 @@ public class ErfanGSIs extends Command {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
                             bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " - GSI*\n\n"
-                                    + "\n\n*Information:*\n\n`" + descGSI
+                                    + "Information:*\n\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
-                                    + "\n\n*Thanks to:*\n [Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
+                                    + "\n\n*Thanks to:*\n[Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
                                     + " | " + "[VegaBobo](https://github.com/VegaBobo/Bot3)"
                                     + "\n\n[Bo³+t (Kurata Yui) Source](https://github.com/Kurata-Yui/Bot3)", Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
                         } catch (Exception e) {
