@@ -197,6 +197,39 @@ public class ErfanGSIs extends Command {
         return Arrays.asList(Objects.requireNonNull(JSONs.getArrayFromJSON(portConfigFile)).toArray()).contains(idAsString);
     }
 
+    private StringBuilder getModelOfOutput() {
+        // Dump
+        StringBuilder generic = new StringBuilder();
+        generic.append("Generic");
+
+        StringBuilder fullLogs = new StringBuilder();
+        try {
+            ProcessBuilder pb;
+            pb = new ProcessBuilder("/bin/bash", "-c",
+                    "grep -oP \"(?<=^Model: ).*\" -hs \"$(pwd)\"/ErfanGSIs/output/*txt | head -1"
+            );
+            pb.redirectErrorStream(true);
+            Process process = pb.start();
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line;
+                if (line.contains("qssi")) {
+                    line = "QSSI (Qualcomm Generic)";
+                }
+                fullLogs.append(line);
+            }
+            if (fullLogs.equals("")) {
+                return generic;
+            }
+            return fullLogs;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return generic;
+    }
+
     private void createGSI(GSICmdObj gsiCmdObj, TelegramBot bot) {
         Update update = gsiCmdObj.getUpdate();
         ProcessBuilder pb;
@@ -308,6 +341,7 @@ public class ErfanGSIs extends Command {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
                             bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " GSI*"
+                                    + "\n*From " + getModelOfOutput() + "*"
                                     + "\n\n*Information:*\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
                                     + "\n\n*Credits to:*\n[Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
