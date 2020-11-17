@@ -307,12 +307,15 @@ public class ErfanGSIs extends Command {
                 try {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
-                            bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " - GSI*"
+                            bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " GSI*"
                                     + "\n\n*Information:*\n\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
-                                    + "\n\n*Thanks to:*\n[Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
-                                    + " | " + "[VegaBobo](https://github.com/VegaBobo/Bot3)"
-                                    + "\n\n[Bo³+t (Kurata Yui) Source](https://github.com/Kurata-Yui/Bot3)", Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
+                                    + "\n\n*Credits to:*\n[Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
+                                    + " | " + "[Bo³+t](https://github.com/Kurata-Yui/Bot3)"
+                                    + " | " + "[AutoMerger](https://github.com/YuMiGSIs/S_EXT-P-Merger)"
+                                    + "\n\n" // Sone space here without content
+                                    + "*YuMi GSIs (Info)*:\n [Channel](https://t.me/yumigsis_channel) | [Group](https://t.me/yumigsis_group) | [GitHub](https://github.com/YuMiGSIs)"
+                                    , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
                         } catch (Exception e) {
                             LOGGER.error("bot-announcement-id looks wrong or not set");
                         }
