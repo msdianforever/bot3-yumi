@@ -51,7 +51,7 @@
     <egsi_current_queue>*Ports on Queue:* %1&#xA;_%2_</egsi_current_queue>
     <egsi_added_to_queue>Added to Queue</egsi_added_to_queue>
     <egsi_no_ports_queue>No ports on queue</egsi_no_ports_queue>
-    <egsi_supported_types>*GSI Type or URL is not valid!*&#xA;&#xA;Supported types on Android 9: %1&#xA;&#xA;Supported types on Android 10: %2</egsi_supported_types>
+    <egsi_supported_types>*GSI Type or URL is not valid!*&#xA;&#xA;Supported types on Android 9: %1&#xA;&#xA;Supported types on Android 10: %2;&#xA;&#xA;Supported types on Android 11: %3</egsi_supported_types>
 
     <!-- Download2GDrive Command -->
 

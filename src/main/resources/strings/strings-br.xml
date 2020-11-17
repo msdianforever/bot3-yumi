@@ -40,7 +40,7 @@
     <egsi_current_queue>*Ports na Fila:* _%1&#xA;%2_</egsi_current_queue>
     <egsi_added_to_queue>Port adicionado na fila</egsi_added_to_queue>
     <egsi_no_ports_queue>Sem Ports na Fila</egsi_no_ports_queue>
-    <egsi_supported_types>*Tipo de GSI ou URL invalida!*&#xA;&#xA;Tipos de GSIs suportadas no Android 9: %1&#xA;&#xA;Tipos de GSIs suportadas no Android 10: %2</egsi_supported_types>
+    <egsi_supported_types>*Tipo de GSI ou URL invalida!*&#xA;&#xA;Tipos de GSIs suportadas no Android 9: %1&#xA;&#xA;Tipos de GSIs suportadas no Android 10: %2;&#xA;&#xA;Tipos de GSIs suportadas no Android 11: %3</egsi_supported_types>
 
     <!-- Download2GDrive Command -->
 
