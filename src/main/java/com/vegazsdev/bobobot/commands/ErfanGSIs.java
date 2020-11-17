@@ -186,28 +186,7 @@ public class ErfanGSIs extends Command {
     }
 
     private boolean isGSIValid(String gsi) {
-        File[] supportedGSIs = ArrayUtils.addAll(supportedGSIs9, supportedGSIs10);
-        try {
-            String gsi2 = null;
-            if (gsi.contains(":")) {
-                gsi2 = gsi.split(":")[0];
-            }
-            for (File supportedGSI : supportedGSIs) {
-                if (gsi2 != null) {
-                    if (gsi2.equals(supportedGSI.getName())) {
-                        return true;
-                    }
-                } else {
-                    if (gsi.equals(supportedGSI.getName())) {
-                        return true;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return false;
-        }
-        return false;
+        return true;
     }
 
     private boolean userHasPortPermissions(String idAsString) {
