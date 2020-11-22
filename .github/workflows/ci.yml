@@ -21,4 +21,12 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build; ls -lh jar* | grep .jar
+      run: ./gradlew build
+    - name: Publish
+      uses: softprops/action-gh-release@v1
+      with:
+          files: |
+            jar-output/BoboBot-1-all.jar
+            
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
