@@ -216,11 +216,11 @@ public class ErfanGSIs extends Command {
             while ((line = reader.readLine()) != null) {
                 line = line;
                 if (line.contains("qssi")) {
-                    line = "QSSI (Qualcomm Generic)";
+                    line = "Qualcomm Single System Image (Generic)";
                 }
                 fullLogs.append(line);
             }
-            if (fullLogs.equals("")) {
+            if (fullLogs.equals("") || fullLogs.equals(null)) {
                 return generic;
             }
             return fullLogs;
