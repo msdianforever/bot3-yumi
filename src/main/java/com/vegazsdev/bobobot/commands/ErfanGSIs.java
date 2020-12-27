@@ -215,8 +215,29 @@ public class ErfanGSIs extends Command {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line;
+                if (line.contains("miatoll")) {
+                    line = "MiAtoll (9S and others...)";
+                }
+                if (line.contains("surya")) {
+                    line = "Poco X3";
+                }
+                if (line.contains("raphael")) {
+                    line = "Mi 9T Pro";
+                }
+                if (line.contains("violet")) {
+                    line = "Redmi Note 7 Pro";
+                }
+                if (line.contains("lavender")) {
+                    line = "Redmi Note 7";
+                }
+                if (line.contains("SM6250")) {
+                    line = "MiAtoll (9S and others...)";
+                }
                 if (line.contains("qssi")) {
                     line = "Qualcomm Single System Image (Generic)";
+                }
+                if (line.contains("mainline")) {
+                    line = "AOSP/Pixel (Mainline) Device";
                 }
                 fullLogs.append(line);
             }
