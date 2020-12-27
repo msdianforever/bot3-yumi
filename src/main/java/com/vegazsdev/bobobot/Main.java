@@ -8,8 +8,9 @@ import com.vegazsdev.bobobot.utils.FileTools;
 import com.vegazsdev.bobobot.utils.XMLs;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -89,16 +90,12 @@ public class Main {
                             + ");");
         }
 
-        ApiContextInitializer.init();
-        TelegramBotsApi botsApi = new TelegramBotsApi();
-
         try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new TelegramBot(bot, commandClasses));
             LOGGER.info(XMLs.getFromStringsXML(DEF_CORE_STRINGS_XML, "bot_started"));
-        } catch (Exception e) {
+        } catch (TelegramApiException e) {
             LOGGER.error(e.toString(), e);
         }
-
     }
-
 }

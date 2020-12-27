@@ -90,9 +90,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public int sendMessage(String msg, Update update) {
-        SendMessage sndmsg = new SendMessage().setText(msg).setChatId(update.getMessage().getChatId())
-                .enableMarkdown(true)
-                .disableWebPagePreview();
+        SendMessage sndmsg = new SendMessage();
+        sndmsg.setText(msg);
+        sndmsg.setChatId(String.valueOf(update.getMessage().getChatId()));
+        sndmsg.enableMarkdown(true);
+        sndmsg.disableWebPagePreview();
         try {
             return execute(sndmsg).getMessageId();
         } catch (TelegramApiException e) {
@@ -103,10 +105,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
     public int sendReply(String msg, Update update) {
-        SendMessage sndmsg = new SendMessage().setText(msg).setChatId(update.getMessage().getChatId())
-                .enableMarkdown(true)
-                .setReplyToMessageId(update.getMessage().getMessageId())
-                .disableWebPagePreview();
+        SendMessage sndmsg = new SendMessage();
+        sndmsg.setText(msg);
+        sndmsg.setChatId(String.valueOf(update.getMessage().getChatId()));
+        sndmsg.enableMarkdown(true);
+        sndmsg.setReplyToMessageId(update.getMessage().getMessageId());
+        sndmsg.disableWebPagePreview();
         try {
             return execute(sndmsg).getMessageId();
         } catch (TelegramApiException e) {
@@ -116,9 +120,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public int sendMessage2ID(String msg, long id) {
-        SendMessage sndmsg = new SendMessage().setText(msg).setChatId(id)
-                .enableMarkdown(true)
-                .disableWebPagePreview();
+        SendMessage sndmsg = new SendMessage();
+        sndmsg.setText(msg);
+        sndmsg.setChatId(String.valueOf(id));
+        sndmsg.enableMarkdown(true);
+        sndmsg.disableWebPagePreview();
         try {
             return execute(sndmsg).getMessageId();
         } catch (TelegramApiException e) {
@@ -128,10 +134,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public void editMessage(String msg, Update update, int id) {
-        EditMessageText editMessageText = new EditMessageText().setText(msg)
-                .setChatId(update.getMessage().getChatId())
-                .setMessageId(id)
-                .enableMarkdown(true);
+        EditMessageText editMessageText = new EditMessageText();
+        editMessageText.setText(msg);
+        editMessageText.setChatId(String.valueOf(update.getMessage().getChatId()));
+        editMessageText.setMessageId(id);
+        editMessageText.enableMarkdown(true);
         try {
             execute(editMessageText);
         } catch (TelegramApiException e) {
@@ -149,7 +156,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         } else {
             try {
                 GetChatMember z = new GetChatMember();
-                z.setChatId(update.getMessage().getChatId());
+                z.setChatId(String.valueOf(update.getMessage().getChatId()));
                 z.setUserId(update.getMessage().getFrom().getId());
                 ChatMember cx = execute(z);
                 switch (cx.getStatus()) {
