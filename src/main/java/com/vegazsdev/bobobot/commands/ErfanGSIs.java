@@ -342,7 +342,7 @@ public class ErfanGSIs extends Command {
 
                 StringBuilder generateLinks = new StringBuilder();
 
-                generateLinks.append("\n*Download* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
+                generateLinks.append("\n*Download* - ")
 
                 if (!aonly.toString().trim().equals("")) {
                     generateLinks.append("[Aonly](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
@@ -361,15 +361,15 @@ public class ErfanGSIs extends Command {
                 try {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
-                            bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " GSI*"
+                            bot.sendMessage2ID("*"+ "Requested " + gsiCmdObj.getGsi() + " GSI*"
                                     + "\n*From " + getModelOfOutput() + "*"
                                     + "\n\n*Information:*\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
-                                    + "\n\n*Credits to:*\n[Erfan Abdi](https://github.com/erfanoabdi/ErfanGSIs/)"
-                                    + " | " + "[Bo³+t](https://github.com/Kurata-Yui/Bot3)"
-                                    + " | " + "[AutoMerger](https://github.com/YuMiGSIs/S_EXT-P-Merger)"
+                                    + "\n\n*Credits:*\n[Erfan Abdi](https://github.com/erfanoabdi)"
+                                    + " | " + "[Nippon](https://github.com/nnippon)"
+                                    + " | " + "[Vega](http://github.com/VegaBobo)"
                                     + "\n\n" // Sone space here without content
-                                    + "*YuMi GSIs (Info)*:\n[Channel](https://t.me/yumigsis_channel) | [Group](https://t.me/yumigsis_group) | [GitHub](https://github.com/YuMiGSIs)"
+                                    + "*Join*:\n[Channel](https://t.me/yashgsi) | [Group](https://t.me/yashgsisupport)
                                     , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
                         } catch (Exception e) {
                             LOGGER.error("bot-announcement-id looks wrong or not set");
