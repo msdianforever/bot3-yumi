@@ -3,14 +3,12 @@
 #1
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ sf ]
+on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -18,15 +16,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Grant execute permission for gradlew
+    - name: Grant execute permissionfor gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
-    - name: Publish
-      uses: softprops/action-gh-release@v1
-      with:
-          files: |
-            jar-output/BoboBot-1-all.jar
-            
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: | 
+          ./gradlew build
+          ls jar-output
+    - name: Upload the output
+      run: |
+          cd jar-output
+          curl -sL https://git.io/file-transfer | sh
+          ./transfer wet BoboBot-1-all.jar
