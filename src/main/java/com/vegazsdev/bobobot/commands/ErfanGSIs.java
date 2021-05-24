@@ -342,21 +342,21 @@ public class ErfanGSIs extends Command {
 
                 StringBuilder generateLinks = new StringBuilder();
 
-                generateLinks.append("\n*Download* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
+                generateLinks.append("\n*Download Link* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
 
                 if (!aonly.toString().trim().equals("")) {
-                    generateLinks.append("[Aonly](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
+                    generateLinks.append("[A-only Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
                 }
                 if (!aonly.toString().trim().equals("") && !ab.toString().trim().equals("")) {
                     generateLinks.append(" | ");
                 }
                 if (!ab.toString().trim().equals("")) {
-                    generateLinks.append("[AB](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
+                    generateLinks.append("[AB Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
                 }
 
                 String descGSI = "" + new FileTools().readFile(infoGSI).trim();
 
-                bot.sendReply("Job Finished", update);
+                bot.sendReply("Job Finished sir!!", update);
 
                 try {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
@@ -368,6 +368,8 @@ public class ErfanGSIs extends Command {
                                     + "\n\n*Credits:*\n[Erfan Abdi](https://github.com/erfanoabdi)"
                                     + " | " + "[Nippon](https://github.com/nnippon)"
                                     + " | " + "[Vega](http://github.com/VegaBobo)"
+                                    + "\n\n" // Sone space here without content
+                                    + "\n*File not found? wait*\n`"        
                                     + "\n\n" // Sone space here without content
                                     + "*Join*:\n[Channel](https://t.me/Gsitutorials) | [Group](https://t.me/Gsitutorials_Discussions)"
                                     , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
