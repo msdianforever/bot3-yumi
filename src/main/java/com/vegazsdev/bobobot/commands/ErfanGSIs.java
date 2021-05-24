@@ -369,7 +369,7 @@ public class ErfanGSIs extends Command {
                                     + " | " + "[Nippon](https://github.com/nnippon)"
                                     + " | " + "[Vega](http://github.com/VegaBobo)"
                                     + "\n\n" // Sone space here without content
-                                    + "*Join*:\n[Channel](https://t.me/yashgsi) | [Group](https://t.me/yashgsisupport)"
+                                    + "*Join*:\n[Channel](https://t.me/Gsitutorials) | [Group](https://t.me/Gsitutorials_Discussions)"
                                     , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
                         } catch (Exception e) {
                             LOGGER.error("bot-announcement-id looks wrong or not set");
