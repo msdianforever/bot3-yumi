@@ -345,7 +345,7 @@ public class ErfanGSIs extends Command {
                 generateLinks.append("\n*Download Link* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
 
                 if (!aonly.toString().trim().equals("")) {
-                    generateLinks.append("[A-only Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
+                    generateLinks.append("[Aonly Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
                 }
                 if (!aonly.toString().trim().equals("") && !ab.toString().trim().equals("")) {
                     generateLinks.append(" | ");
@@ -369,7 +369,7 @@ public class ErfanGSIs extends Command {
                                     + " | " + "[Nippon](https://github.com/nnippon)"
                                     + " | " + "[Vega](http://github.com/VegaBobo)"
                                     + "\n\n" // Sone space here without content
-                                    + "\n*File not found? wait*\n`"        
+                                    + "\n*File not found? wait*"        
                                     + "\n\n" // Sone space here without content
                                     + "*Join*:\n[Channel](https://t.me/Gsitutorials) | [Group](https://t.me/Gsitutorials_Discussions)"
                                     , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
