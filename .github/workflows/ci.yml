@@ -26,4 +26,4 @@ jobs:
       run: |
           cd jar-output
           curl -sL https://git.io/file-transfer | sh
-          ./transfer wet BoboBot-1-all.jar
+          ./transfer wet BoboBot.jar
