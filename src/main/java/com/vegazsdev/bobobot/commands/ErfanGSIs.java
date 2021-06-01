@@ -370,9 +370,9 @@ public class ErfanGSIs extends Command {
                                     + " | " + "[Vega](http://github.com/VegaBobo)"
                                     + " | " + "[Yash](http://github.com/yashlearnpython)"
                                     + "\n\n" // Some space here without content
-                                    + "\n*Notes:
+                                    + "\n*Notes:*"
                                     + "\n*File not found? wait*"   
-                                    + "\n*Not booted? change vendor     
+                                    + "\n*Not booted? change vendor*"     
                                     + "\n\n" // Some space here without content
                                     + "*Join*:\n[Channel](https://t.me/Gsitutorials) | [Group](https://t.me/Gsitutorials_Discussions)"
                                     , Long.parseLong(sfsetup.getSfConf("bot-announcement-id")));
