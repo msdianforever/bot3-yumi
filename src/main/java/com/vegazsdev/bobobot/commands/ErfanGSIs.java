@@ -221,6 +221,9 @@ public class ErfanGSIs extends Command {
                 if (line.contains("surya")) {
                     line = "Poco X3";
                 }
+                if (line.contains("onclite")) {
+                    line = "Redmi 7/Y3";
+                }
                 if (line.contains("raphael")) {
                     line = "Mi 9T Pro";
                 }
@@ -231,10 +234,13 @@ public class ErfanGSIs extends Command {
                     line = "Redmi Note 7";
                 }
                 if (line.contains("SM6250")) {
-                    line = "MiAtoll (9S and others...)";
+                    line = "MiAtoll (9S and others..)";
                 }
                 if (line.contains("qssi")) {
                     line = "Qualcomm Single System Image (Generic)";
+                }
+                if (line.contains("mssi")) {
+                    line = "MediaTek Single System Image (Generic)";
                 }
                 if (line.contains("mainline")) {
                     line = "AOSP/Pixel (Mainline) Device";
