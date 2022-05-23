@@ -224,6 +224,9 @@ public class ErfanGSIs extends Command {
                 if (line.contains("onclite")) {
                     line = "Redmi 7/Y3";
                 }
+                if (line.contains("onc")) {
+                    line = "Redmi 7/Y3";
+                }
                 if (line.contains("raphael")) {
                     line = "Mi 9T Pro";
                 }
@@ -242,8 +245,29 @@ public class ErfanGSIs extends Command {
                 if (line.contains("mssi")) {
                     line = "MediaTek Single System Image (Generic)";
                 }
-                if (line.contains("mainline")) {
-                    line = "AOSP/Pixel (Mainline) Device";
+                if (line.contains("bramble")) {
+                    line = "Google Pixel 4a 5G";
+                }
+                if (line.contains("coral")) {
+                    line = "Google Pixel 4 XL";
+                }
+                if (line.contains("flame")) {
+                    line = "Google Pixel 4";
+                }
+                if (line.contains("oriole")) {
+                    line = "Google Pixel 6";
+                }
+                if (line.contains("raven")) {
+                    line = "Google Pixel 6 Pro";
+                }
+                if (line.contains("barbet")) {
+                    line = "Google Pixel 5a";
+                }
+                if (line.contains("sunfish")) {
+                    line = "Google Pixel 4a";
+                }
+                if (line.contains("redfin")) {
+                    line = "Google Pixel 5";
                 }
                 fullLogs.append(line);
             }
@@ -335,7 +359,7 @@ public class ErfanGSIs extends Command {
 
                 // arr == full path
 
-                fullLogs.append("\n").append("Sending files to SF...");
+                fullLogs.append("\n").append("Uploading files to Sourceforge");
                 bot.editMessage(fullLogs.toString(), update, id);
 
                 String re = new sfUpload().uploadGsi(arr, gsiCmdObj.getGsi());
@@ -348,7 +372,7 @@ public class ErfanGSIs extends Command {
 
                 StringBuilder generateLinks = new StringBuilder();
 
-                generateLinks.append("\n*Download Link* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
+                generateLinks.append("\n*Download from here* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
 
                 if (!aonly.toString().trim().equals("")) {
                     generateLinks.append("[Aonly Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
@@ -357,17 +381,17 @@ public class ErfanGSIs extends Command {
                     generateLinks.append(" | ");
                 }
                 if (!ab.toString().trim().equals("")) {
-                    generateLinks.append("[AB Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
+                    generateLinks.append("[SAR/AB](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
                 }
 
                 String descGSI = "" + new FileTools().readFile(infoGSI).trim();
 
-                bot.sendReply("Job Finished sir!!", update);
+                bot.sendReply("Pushed to channel!", update);
 
                 try {
                     if (sfsetup.getSfConf("bot-send-announcement").equals("true")) {
                         try {
-                            bot.sendMessage2ID("*"+ "Requested " + gsiCmdObj.getGsi() + " GSI*"
+                            bot.sendMessage2ID("*" + gsiCmdObj.getGsi() + " GSI*"
                                     + "\n*From " + getModelOfOutput() + "*"
                                     + "\n\n*Information:*\n`" + descGSI
                                     + "`\n" + generateLinks.toString()
