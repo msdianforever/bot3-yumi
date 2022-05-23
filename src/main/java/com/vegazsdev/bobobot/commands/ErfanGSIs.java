@@ -245,6 +245,9 @@ public class ErfanGSIs extends Command {
                 if (line.contains("mssi")) {
                     line = "MediaTek Single System Image (Generic)";
                 }
+                if (line.contains("mainline")) {
+                    line = "AOSP/Pixel (Mainline) Device";
+                }
                 if (line.contains("bramble")) {
                     line = "Google Pixel 4a 5G";
                 }
@@ -306,7 +309,7 @@ public class ErfanGSIs extends Command {
                     fullLogs.append("\n").append(line);
                     bot.editMessage(fullLogs.toString(), update, id);
                 }
-                if (line.contains("Create Temp and out dir")) {
+                if (line.contains("Create temp & out directory")) {
                     weDontNeedAria2Logs = true;
                 }
                 if (weDontNeedAria2Logs) {
@@ -372,16 +375,10 @@ public class ErfanGSIs extends Command {
 
                 StringBuilder generateLinks = new StringBuilder();
 
-                generateLinks.append("\n*Download from here* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
+                generateLinks.append("\n*Download from here* - ").append"\n");
 
-                if (!aonly.toString().trim().equals("")) {
-                    generateLinks.append("[Aonly Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(aonly.toString()).append(")");
-                }
-                if (!aonly.toString().trim().equals("") && !ab.toString().trim().equals("")) {
-                    generateLinks.append(" | ");
-                }
                 if (!ab.toString().trim().equals("")) {
-                    generateLinks.append("[SAR/AB](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
+                    generateLinks.append("[SAR/AB Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
                 }
 
                 String descGSI = "" + new FileTools().readFile(infoGSI).trim();
