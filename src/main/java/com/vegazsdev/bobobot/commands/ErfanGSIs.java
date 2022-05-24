@@ -388,7 +388,7 @@ public class ErfanGSIs extends Command {
 
                 StringBuilder generateLinks = new StringBuilder();
 
-                generateLinks.append("\n*Download from here* - ").append("\n");
+                generateLinks.append("\n*Download from here* - ").append("[Folder](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(")\n");
 
                 if (!ab.toString().trim().equals("")) {
                     generateLinks.append("[SAR/AB Link](https://sourceforge.net/projects/").append(sfsetup.getSfConf("bot-sf-proj")).append("/files/").append(re).append(ab.toString()).append(")");
