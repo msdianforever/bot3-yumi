@@ -36,6 +36,9 @@ public class ErfanGSIs extends Command {
     private final File[] supportedGSIs9 = new File(toolPath + "roms/9").listFiles(File::isDirectory);
     private final File[] supportedGSIs10 = new File(toolPath + "roms/10").listFiles(File::isDirectory);
     private final File[] supportedGSIs11 = new File(toolPath + "roms/11").listFiles(File::isDirectory);
+    private final File[] supportedGSIs12 = new File(toolPath + "roms/12").listFiles(File::isDirectory);
+    private final File[] supportedGSIs13 = new File(toolPath + "roms/Tiramisu").listFiles(File::isDirectory);
+    private final File[] supportedGSIs13 = new File(toolPath + "roms/TiramisuPrivacySandbox").listFiles(File::isDirectory);
     private String infoGSI = "";
 
     public ErfanGSIs() {
@@ -138,6 +141,18 @@ public class ErfanGSIs extends Command {
                                 .replace("%3",
                                         Arrays.toString(supportedGSIs11).replace(toolPath + "roms/11/", "")
                                                 .replace("[", "")
+                                                .replace("]", ""))
+                                .replace("%4",
+                                        Arrays.toString(supportedGSIs12).replace(toolPath + "roms/12/", "")
+                                                .replace("[", "")
+                                                .replace("]", ""))
+                                .replace("%5",
+                                        Arrays.toString(supportedGSIs13).replace(toolPath + "roms/Tiramisu/", "")
+                                                .replace("[", "")
+                                                .replace("]", ""))
+                                .replace("%6",
+                                        Arrays.toString(supportedGSIs13).replace(toolPath + "roms/TiramisuPrivacySandbox/", "")
+                                                .replace("[", "")
                                                 .replace("]", "")), update);
                     }
                 }
@@ -206,7 +221,7 @@ public class ErfanGSIs extends Command {
         try {
             ProcessBuilder pb;
             pb = new ProcessBuilder("/bin/bash", "-c",
-                    "grep -oP \"(?<=^Model: ).*\" -hs \"$(pwd)\"/ErfanGSIs/output/*txt | head -1"
+                    "grep -oP \"(?<=^Build Type: ).*\" -hs \"$(pwd)\"/ErfanGSIs/output/*txt | head -1"
             );
             pb.redirectErrorStream(true);
             Process process = pb.start();
@@ -216,7 +231,7 @@ public class ErfanGSIs extends Command {
             while ((line = reader.readLine()) != null) {
                 line = line;
                 if (line.contains("miatoll")) {
-                    line = "MiAtoll (9S and others...)";
+                    line = "Memetoll (9S and others...)";
                 }
                 if (line.contains("surya")) {
                     line = "Poco X3";
@@ -237,7 +252,7 @@ public class ErfanGSIs extends Command {
                     line = "Redmi Note 7";
                 }
                 if (line.contains("SM6250")) {
-                    line = "MiAtoll (9S and others..)";
+                    line = "Memetoll (9S and others..)";
                 }
                 if (line.contains("qssi")) {
                     line = "Qualcomm Single System Image (Generic)";
@@ -248,28 +263,28 @@ public class ErfanGSIs extends Command {
                 if (line.contains("mainline")) {
                     line = "AOSP/Pixel (Mainline) Device";
                 }
-                if (line.contains("bramble")) {
+                if (line.contains("bramble-user")) {
                     line = "Google Pixel 4a 5G";
                 }
-                if (line.contains("coral")) {
+                if (line.contains("coral-user")) {
                     line = "Google Pixel 4 XL";
                 }
-                if (line.contains("flame")) {
+                if (line.contains("flame-user")) {
                     line = "Google Pixel 4";
                 }
-                if (line.contains("oriole")) {
+                if (line.contains("oriole-user")) {
                     line = "Google Pixel 6";
                 }
-                if (line.contains("raven")) {
+                if (line.contains("raven-user")) {
                     line = "Google Pixel 6 Pro";
                 }
-                if (line.contains("barbet")) {
+                if (line.contains("barbet-user")) {
                     line = "Google Pixel 5a";
                 }
-                if (line.contains("sunfish")) {
+                if (line.contains("sunfish-user")) {
                     line = "Google Pixel 4a";
                 }
-                if (line.contains("redfin")) {
+                if (line.contains("redfin-user")) {
                     line = "Google Pixel 5";
                 }
                 fullLogs.append(line);
@@ -346,9 +361,7 @@ public class ErfanGSIs extends Command {
                             .forEach(a -> {
                                 if (a.toString().endsWith(".img.gz")) {
                                     arr.add(a.toString());
-                                    if (a.toString().contains("Aonly")) {
-                                        aonly.set(FilenameUtils.getBaseName(a.toString()) + "." + FilenameUtils.getExtension(a.toString()));
-                                    } else {
+                                    if (a.toString().contains("SAR/AB Link")) {
                                         ab.set(FilenameUtils.getBaseName(a.toString()) + "." + FilenameUtils.getExtension(a.toString()));
                                     }
                                 }
